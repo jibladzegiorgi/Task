@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/matche"
+        android:icon="@drawable/ic_ball"
+        android:title="Matches" />
+    <item
+        android:id="@+id/Player"
+        android:icon="@drawable/ic_player"
+        android:title="Top Players" />
+    <item
+        android:id="@+id/viedo"
+        android:icon="@drawable/ic_video"
+        android:title="Viedos" />
+
+    <item
+        android:id="@+id/favorites"
+        android:icon="@drawable/ic_favorite"
+        android:title="Favorites" />
+
+    <item
+        android:id="@+id/setting"
+        android:icon="@drawable/ic_setting"
+        android:title="Settings" />
+</menu>
