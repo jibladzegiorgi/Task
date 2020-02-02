@@ -17,6 +17,7 @@ buildscript {
         recyclerview="1.1.0"
         playservicesauth="17.0.0"
         materialVersion = "1.2.0-alpha04"
+        picassoVersion = "2.71828"
     }
 
     repositories {

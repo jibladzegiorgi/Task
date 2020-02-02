@@ -1,71 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/match_fragment_background"
-    tools:context=".ui.MatchesFragment">
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/match_header" />
+    <data>
+
+        <variable
+            name="match"
+            type="com.giorgi.jibladze.football.model.ViewMatch" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/review_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
-        android:layout_marginEnd="22dp"
-        android:background="@drawable/review_background"
-        app:layout_constraintTop_toBottomOf="@+id/include"
-        tools:layout_editor_absoluteX="22dp">
+        android:layout_height="match_parent"
+        android:background="@drawable/match_fragment_background"
+        tools:context=".ui.match.MatchesFragment">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/overview_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="11dp"
-            android:layout_marginBottom="10dp"
-            android:text="Overview"
-            android:textColor="@color/green_to_gray_selector"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/statistic_btn"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <include
+            android:id="@+id/include"
+            layout="@layout/match_header"
+            bind:match="@{match}" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/statistic_btn"
-            android:layout_width="wrap_content"
+        <com.giorgi.jibladze.football.ui.widget.ReviewView
+            android:id="@+id/review_container"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="11dp"
-            android:layout_marginBottom="10dp"
-            android:text="Statistic"
-            android:textColor="@color/green_to_gray_selector"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/line_up_btn"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/overview_btn"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="22dp"
+            android:background="@drawable/review_background"
+            app:layout_constraintTop_toBottomOf="@+id/include"/>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/line_up_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="11dp"
-            android:layout_marginBottom="10dp"
-            android:text="Line up"
-            android:textColor="@color/green_to_gray_selector"
-            android:textSize="12sp"
+        <FrameLayout
+            android:id="@+id/review_fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/statistic_btn"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/review_container" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="team1"
+            type="com.giorgi.jibladze.football.model.ViewTeam" />
+
+        <variable
+            name="team2"
+            type="com.giorgi.jibladze.football.model.ViewTeam" />
+
+        <variable
+            name="viewMatch"
+            type="com.giorgi.jibladze.football.model.ViewMatchSummaries" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.overview.OverviewFragment">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/possession_team1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:padding="10dp"
+            android:textColor="@color/_B0B0B0"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@+id/possession"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:setBallPossession="@{team1.ballPosition}"
+            tools:text="70%" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/possession"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:padding="10dp"
+            android:text="Ball Possession"
+            android:textColor="@color/_B0B0B0"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@+id/possession_team2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/possession_team1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/possession_team2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:padding="10dp"
+            android:textColor="@color/_B0B0B0"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/possession"
+            app:layout_constraintTop_toTopOf="parent"
+            app:setBallPossession="@{team2.ballPosition}"
+            tools:text="30%" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="0dp"
+            android:layout_height="5dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="22dp"
+            android:max="100"
+            android:progress="50"
+            android:progressDrawable="@drawable/ball_possession_progressbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/possession"
+            app:setBallPossessionProgressForTeam1="@{team1.ballPosition}" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/match_action_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/progressBar"
+            app:matchActionItems="@{viewMatch.matchActionList}"
+            tools:listitem="@layout/match_action_item_view" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

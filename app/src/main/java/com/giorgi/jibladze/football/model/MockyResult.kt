@@ -13,7 +13,7 @@ data class MockyResult(
 data class Match(
 
     @SerializedName("matchTime")
-    val matchTime: Double? = null,
+    val matchTime: String? = null,
 
     @SerializedName("team2")
     val team2: Team? = null,
@@ -25,7 +25,7 @@ data class Match(
     val stadiumAddress: String? = null,
 
     @SerializedName("matchSummary")
-    val matchSummary: MatchSummary? = null,
+    val matchSummary:MatchSummary? = null,
 
     @SerializedName("matchDate")
     val matchDate: Long? = null
@@ -42,7 +42,7 @@ data class Team(
     val score: Int? = null,
 
     @SerializedName("ballPosition")
-    val ballPosition: Int? = null
+    val ballPosition: String? = null
 )
 
 data class MatchSummary(
@@ -55,15 +55,18 @@ data class Summaries(
     val actionTime: String? = null,
 
     @SerializedName("team1Action")
-    val team1Action: Team1Action? = null
+    val team1Action:  List<Team1Action>? = null,
+
+    @SerializedName("team2Action")
+    val team2Action:  List<Team1Action>? = null
 )
 
 data class Team1Action(
     @SerializedName("actionType")
-    val actionType: Int? = null,
+    val actionType: MatchActionType? = null,
 
     @SerializedName("teamType")
-    val teamType: Int? = null,
+    val teamType: MatchTeamType? = null,
 
     @SerializedName("action")
     val action: Action? = null
@@ -71,7 +74,7 @@ data class Team1Action(
 
 data class Action(
     @SerializedName("goalType")
-    val goalType: Int? = null,
+    val goalType: GoalType? = null,
 
     @SerializedName("player")
     val player: Player? = null

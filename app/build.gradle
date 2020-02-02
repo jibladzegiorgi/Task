@@ -40,6 +40,8 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerview"
     implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintlayoutversion"
 
+    //picasso
+    implementation "com.squareup.picasso:picasso:$rootProject.picassoVersion"
 
     // lifecycle
     implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleVersion"

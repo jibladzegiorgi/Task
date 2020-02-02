@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/left_in_player_icon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/left_oout_player_icon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="13dp"
+            app:srcCompat="@mipmap/ic_launcher" />
+    </FrameLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/substitution_out_player_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-medium"
+        android:lines="1"
+        android:textColor="@color/_000"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/container"
+        app:layout_constraintTop_toBottomOf="@+id/substitution_in_player_name"
+        tools:text="Ronaldo" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/substitution_time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif"
+        android:lines="1"
+        android:textColor="@color/_B0B0B0"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toTopOf="@+id/substitution_in_player_name"
+        app:layout_constraintStart_toEndOf="@+id/container"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread_inside"
+        tools:text="16’ Goals by%asdasdasdasdasd" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/substitution_in_player_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-medium"
+        android:lines="1"
+        android:textColor="@color/_000"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/substitution_out_player_name"
+        app:layout_constraintStart_toEndOf="@+id/container"
+        app:layout_constraintTop_toBottomOf="@+id/substitution_time"
+        tools:text="Messi L." />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="7dp"
+        android:layout_height="7dp"
+        app:layout_constraintBottom_toTopOf="@+id/substitution_out_player_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/substitution_in_player_name"
+        app:layout_constraintTop_toTopOf="@+id/substitution_in_player_name"
+        app:srcCompat="@drawable/ic_substitution_in" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="7dp"
+        android:layout_height="7dp"
+        app:layout_constraintBottom_toBottomOf="@+id/substitution_out_player_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/substitution_out_player_name"
+        app:layout_constraintTop_toTopOf="@+id/substitution_out_player_name"
+        app:layout_constraintVertical_bias="0.666"
+        app:srcCompat="@drawable/ic_substitution_out" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

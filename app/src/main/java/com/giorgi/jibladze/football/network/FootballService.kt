@@ -7,7 +7,7 @@ import retrofit2.http.GET
 interface FootballService {
 
     companion object {
-        const val BASE_URL = "http://www.mocky.io/"
+        const val BASE_URL = "https://www.mocky.io/"
     }
 
 //    http://www.mocky.io/v2/5b9264193300006b00205fb9
