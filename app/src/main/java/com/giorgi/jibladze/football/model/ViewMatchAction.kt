@@ -41,7 +41,9 @@ data class ViewTeam1Action(
 
 data class ViewAction(
     val goalType: GoalType? = null,
-    val player: ViewPlayer? = null
+    val player: ViewPlayer? = null,
+    val player1: ViewPlayer? = null,
+    val player2: ViewPlayer? = null
 ): Serializable
 
 data class ViewPlayer(

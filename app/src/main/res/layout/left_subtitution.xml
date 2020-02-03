@@ -19,6 +19,7 @@
             android:id="@+id/left_in_player_icon"
             android:layout_width="25dp"
             android:layout_height="25dp"
+            android:elevation="1dp"
             app:srcCompat="@mipmap/ic_launcher" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -34,18 +35,20 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:layout_marginEnd="40dp"
         android:ellipsize="end"
         android:fontFamily="sans-serif-medium"
         android:lines="1"
-        android:textColor="@color/_000"
+        android:textColor="@color/_B0B0B0"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/container"
         app:layout_constraintTop_toBottomOf="@+id/substitution_in_player_name"
         tools:text="Ronaldo" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/substitution_time"
+        android:id="@+id/substitution_left_time"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -65,19 +68,22 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:layout_marginEnd="40dp"
         android:ellipsize="end"
         android:fontFamily="sans-serif-medium"
         android:lines="1"
         android:textColor="@color/_000"
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/substitution_out_player_name"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/container"
-        app:layout_constraintTop_toBottomOf="@+id/substitution_time"
+        app:layout_constraintTop_toBottomOf="@+id/substitution_left_time"
         tools:text="Messi L." />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="7dp"
         android:layout_height="7dp"
+        android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toTopOf="@+id/substitution_out_player_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -88,6 +94,7 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="7dp"
         android:layout_height="7dp"
+        android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/substitution_out_player_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

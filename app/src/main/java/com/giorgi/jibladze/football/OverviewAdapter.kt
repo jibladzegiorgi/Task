@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.giorgi.jibladze.football.databinding.MatchActionItemViewBinding
@@ -18,25 +19,24 @@ import com.giorgi.jibladze.football.model.MatchActionType.*
 import com.giorgi.jibladze.football.model.MatchTeamType
 import com.giorgi.jibladze.football.model.ViewMatchAction
 import com.giorgi.jibladze.football.model.ViewTeam1Action
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.left_action.view.*
+import kotlinx.android.synthetic.main.left_subtitution.view.*
 import kotlinx.android.synthetic.main.match_action_item_view.view.*
 import kotlinx.android.synthetic.main.right_action.view.*
+import kotlinx.android.synthetic.main.right_subtitution.view.*
 
 class OverviewAdapter(
 ) : ListAdapter<ViewMatchAction, OverviewAdapter.ViewHolder>(SummariesDiff) {
 
-
-    //უნდა გავარკვიო რომელი ექშენია
+//    lateinit var leftSubstitution:View
     override fun getItemViewType(position: Int): Int {
-        getItem(position).team1Action?.find {
-            it.actionType == SUBSTITUTION
-        }?.also {
-            return R.layout.match_action_substitution_item_view
-        }
         return R.layout.match_action_item_view
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+//        leftSubstitution=LayoutInflater.from(parent.context).inflate(R.layout.left_subtitution, null, false)
+
         return ViewHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context), viewType,
@@ -52,40 +52,50 @@ class OverviewAdapter(
     class ViewHolder(private val bindingObject: ViewDataBinding) :
         RecyclerView.ViewHolder(bindingObject.root) {
 
-        private val viewLIst = arrayListOf(
-            R.id.card_left, R.id.goal_left,
-            R.id.card_right, R.id.goal_right
-        )
-
         fun bind(item: ViewMatchAction) {
             if (bindingObject is MatchActionItemViewBinding) {
-                item.team1Action?.let { team1 ->
-                    team1.forEach {
+                resetIncludeViewVisibility()
+                leftOrRightTeamAction(item)
+            }
+        }
 
-                        //გუნდის ექშები
-                        //ვერ მივხვდი კარგად აქ ისედაც პირველი გუნდის Type-ია
-                        when (it.teamType) {
-                            MatchTeamType.TEAM1 -> {
-                                team1Action(it, item)
-                            }
-                            MatchTeamType.TEAM2 -> {
-                                team2Action(it, item)
-                            }
+        private fun leftOrRightTeamAction(item: ViewMatchAction) {
+//            itemView.left_layout_recycler.layoutManager=LinearLayoutManager(itemView.context)
+//            itemView.left_layout_recycler.adapter=InnerOverViewAdapter(item.team1Action)
+
+            //team1Action
+            item.team1Action?.let { team1 ->
+
+                team1.forEach {
+                    //გუნდის ექშები
+                    //ვერ მივხვდი კარგად აქ ისედაც პირველი გუნდის Type-ია
+                    when (it.teamType) {
+                        MatchTeamType.TEAM1 -> {
+                            visibleLeftView()
+                            team1Action(it, item)
+                        }
+                        MatchTeamType.TEAM2 -> {
+                            visibleRightView()
+                            team2Action(it, item)
                         }
                     }
-
                 }
-                item.team2Action?.let { team2 ->
-                    team2.forEach {
-                        //გუნდის ექშები
-                        //ვერ მივხვდი კარგად აქ ისედაც პირველი გუნდის Type-ია
-                        when (it.teamType) {
-                            MatchTeamType.TEAM1 -> {
-                                team1Action(it, item)
-                            }
-                            MatchTeamType.TEAM2 -> {
-                                team2Action(it, item)
-                            }
+
+            }
+
+            //team2Action
+            item.team2Action?.let { team2 ->
+                team2.forEach {
+                    //გუნდის ექშები
+                    //ვერ მივხვდი კარგად აქ ისედაც პირველი გუნდის Type-ია
+                    when (it.teamType) {
+                        MatchTeamType.TEAM1 -> {
+                            visibleLeftView()
+                            team1Action(it, item)
+                        }
+                        MatchTeamType.TEAM2 -> {
+                            team2Action(it, item)
+                            visibleRightView()
                         }
                     }
                 }
@@ -97,13 +107,13 @@ class OverviewAdapter(
             it: ViewTeam1Action,
             item: ViewMatchAction
         ) {
-            itemView.left_layout.visibility = View.GONE
-            itemView.right_layout.visibility = View.VISIBLE
 
             itemView.right_goal_name.text = it.action?.player?.playerName
 
-            loadPlayerImage(it.action?.player?.playerImage,
-                itemView.right_player_icon)
+            loadPlayerImage(
+                it.action?.player?.playerImage,
+                itemView.right_player_icon
+            )
 
             //რა ექშენი მოხდა
             when (it.actionType) {
@@ -119,7 +129,7 @@ class OverviewAdapter(
                                     R.color._B0B0B0
                                 )
                             )
-                            goal(itemView.goal_right)
+                            goal(itemView.icon_right)
                         }
                         GoalType.OWN_GOAL -> {
                             setGoalTextAndColor(
@@ -131,7 +141,7 @@ class OverviewAdapter(
                                     R.color._FF0000
                                 )
                             )
-                            ownGoal(itemView.goal_right)
+                            ownGoal(itemView.icon_right)
                         }
                     }
                 }
@@ -145,7 +155,7 @@ class OverviewAdapter(
                             R.color._B0B0B0
                         )
                     )
-                    yellowCard(itemView.card_right)
+                    yellowCard(itemView.icon_right)
                 }
                 RED_CARD -> {
                     setGoalTextAndColor(
@@ -157,13 +167,15 @@ class OverviewAdapter(
                             R.color._B0B0B0
                         )
                     )
-                    redCard(itemView.card_right)
+                    redCard(itemView.icon_right)
                 }
-                SUBSTITUTION -> {
 
+                SUBSTITUTION -> {
+                    team2Substitution(item)
                 }
             }
         }
+
 
         @SuppressLint("SetTextI18n")
         private fun team1Action(
@@ -171,13 +183,13 @@ class OverviewAdapter(
             item: ViewMatchAction
         ) {
             //რა ექშენი მოხდა ....არ იმუშავებს იმიტომ რომ შეიძლება ერთიდაიგივე დროს შეიძელბა ორივე გუნდმა გააკეთოს ექშენი
-            itemView.left_layout.visibility = View.VISIBLE
-            itemView.right_layout.visibility = View.INVISIBLE
 
             itemView.goal_name.text = it.action?.player?.playerName
 
-            loadPlayerImage(it.action?.player?.playerImage,
-                itemView.left_player_icon)
+            loadPlayerImage(
+                it.action?.player?.playerImage,
+                itemView.left_player_icon
+            )
 
             when (it.actionType) {
                 GOAL -> {
@@ -186,66 +198,123 @@ class OverviewAdapter(
 
                             setGoalTextAndColor(
                                 item,
-                                itemView.left_layout.goal_time,
+                                itemView.left_time,
                                 " Goals by",
                                 ContextCompat.getColor(
                                     itemView.context,
                                     R.color._B0B0B0
                                 )
                             )
-                            goal(itemView.left_layout.goal_left)
+                            goal(itemView.icon_left)
                         }
                         GoalType.OWN_GOAL -> {
                             setGoalTextAndColor(
                                 item,
-                                itemView.left_layout.goal_time,
+                                itemView.left_time,
                                 " Own Goal",
                                 ContextCompat.getColor(
                                     itemView.context,
                                     R.color._FF0000
                                 )
                             )
-                            ownGoal(itemView.left_layout.goal_left)
+                            ownGoal(itemView.icon_left)
                         }
                     }
                 }
                 YELLOW_CARD -> {
                     setGoalTextAndColor(
                         item,
-                        itemView.left_layout.goal_time,
+                        itemView.left_time,
                         " Tripping",
                         ContextCompat.getColor(
                             itemView.context,
                             R.color._B0B0B0
                         )
                     )
-                    yellowCard(itemView.left_layout.card_left)
+                    yellowCard(itemView.icon_left)
                 }
                 RED_CARD -> {
                     setGoalTextAndColor(
                         item,
-                        itemView.left_layout.goal_time,
+                        itemView.left_time,
                         " Tripping",
                         ContextCompat.getColor(
                             itemView.context,
                             R.color._B0B0B0
                         )
                     )
-                    redCard(itemView.left_layout.card_left)
+                    redCard(itemView.icon_left)
                 }
                 SUBSTITUTION -> {
-
+                    team1Substitution(item)
                 }
             }
         }
 
-        private fun visibleVIew(view: View) {
-            view.visibility = View.VISIBLE
-            viewLIst.forEach {
-                if (it != view.id) {
-                    itemView.findViewById<View>(it).visibility = View.GONE
+        @SuppressLint("SetTextI18n")
+        private fun team2Substitution(
+            item: ViewMatchAction
+        ) {
+            goneRightActionLayout()
+
+            itemView.right_substitution_layout.visibility = View.VISIBLE
+            itemView.substitution_right_time.visibility = View.VISIBLE
+            itemView.substitution_right_time.text = item.actionTime + " Substitution"
+            item.team2Action?.forEach { team2Substitution ->
+                team2Substitution.action?.player1?.let {
+                    itemView.substitution_right_in_player_name.visibility = View.VISIBLE
+                    itemView.substitution_right_in_player_name.text = it.playerName
+                }
+                team2Substitution.action?.player2?.let {
+                    itemView.substitution_right_out_player_name.visibility = View.VISIBLE
+                    itemView.substitution_right_out_player_name.text = it.playerName
                 }
             }
+        }
+
+        @SuppressLint("SetTextI18n")
+        private fun team1Substitution(
+            item: ViewMatchAction
+        ) {
+            goneLeftActionLayout()
+
+            itemView.left_substitution_layout.visibility = View.VISIBLE
+            itemView.substitution_left_time.visibility = View.VISIBLE
+            itemView.substitution_left_time.text = item.actionTime + " Substitution"
+            item.team1Action?.forEach { team1Substitution ->
+                team1Substitution.action?.player1?.let {
+                    itemView.substitution_in_player_name.visibility = View.VISIBLE
+                    itemView.substitution_in_player_name.text = it.playerName
+                }
+                team1Substitution.action?.player2?.let {
+                    itemView.substitution_out_player_name.visibility = View.VISIBLE
+                    itemView.substitution_out_player_name.text = it.playerName
+                }
+            }
+        }
+
+        private fun goneLeftActionLayout() {
+            itemView.left_layout.visibility = View.GONE
+
+        }
+
+        private fun goneRightActionLayout() {
+            itemView.right_layout.visibility = View.GONE
+        }
+
+        private fun resetIncludeViewVisibility() {
+            itemView.right_layout.visibility = View.GONE
+            itemView.right_substitution_layout.visibility = View.GONE
+            itemView.left_substitution_layout.visibility = View.GONE
+            itemView.left_layout.visibility = View.GONE
+        }
+
+        private fun visibleLeftView() {
+            itemView.left_layout.visibility = View.VISIBLE
+        }
+
+        private fun visibleRightView() {
+            itemView.right_layout.visibility = View.VISIBLE
         }
 
         @SuppressLint("SetTextI18n")
@@ -260,22 +329,26 @@ class OverviewAdapter(
         }
 
         private fun yellowCard(view: AppCompatImageView) {
-            visibleVIew(view)
+            view.visibility = View.VISIBLE
+            itemView.action.visibility = View.VISIBLE
             view.setImageDrawable(itemView.context.getDrawable(R.drawable.ic_yellow_card))
         }
 
         private fun redCard(view: AppCompatImageView) {
-            visibleVIew(view)
+            view.visibility = View.VISIBLE
+            itemView.action.visibility = View.VISIBLE
             view.setImageDrawable(itemView.context.getDrawable(R.drawable.ic_red_card))
         }
 
         private fun ownGoal(view: AppCompatImageView) {
-            visibleVIew(view)
+            view.visibility = View.VISIBLE
+            itemView.action.visibility = View.VISIBLE
             view.setImageDrawable(itemView.context.getDrawable(R.drawable.ic_own_goal))
         }
 
         private fun goal(view: AppCompatImageView) {
-            visibleVIew(view)
+            view.visibility = View.VISIBLE
+            itemView.action.visibility = View.VISIBLE
             view.setImageDrawable(itemView.context.getDrawable(R.drawable.ic_goal))
         }
 
@@ -284,7 +357,12 @@ class OverviewAdapter(
             playerImageUrl: String?,
             rightPlayerIcon: AppCompatImageView
         ) {
-//            Picasso.get().load(playerImageUrl).into(rightPlayerIcon)
+            //მოსული სურათის მისამართი არ მუშაობს
+            val testUrl =
+                "https://images2.minutemediacdn.com/image/upload/c_fill,w_912,h_516,f_auto,q_auto,g_auto/shape/cover/sport/france-v-germany-uefa-nations-league-a-5bca0ac66f0e5b6500000001.jpg"
+            Picasso.get().load(testUrl)
+                .transform(CircleTransform())
+                .into(rightPlayerIcon)
         }
     }
 

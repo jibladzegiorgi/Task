@@ -9,7 +9,7 @@
         android:orientation="vertical">
 
         <include
-            android:id="@+id/include3"
+            android:id="@+id/left_substitution_layout"
             layout="@layout/left_subtitution"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -18,15 +18,12 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/appCompatImageView4"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_width="7dp"
+            android:layout_height="7dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/ic_small_ball" />
 
         <View
@@ -50,6 +47,7 @@
             app:layout_constraintTop_toBottomOf="@+id/appCompatImageView4" />
 
         <include
+            android:id="@+id/right_substitution_layout"
             layout="@layout/right_subtitution"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

@@ -56,23 +56,11 @@
         tools:text="Messi L." />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/goal_right"
+        android:id="@+id/icon_right"
         android:layout_width="15dp"
         android:layout_height="15dp"
         android:layout_marginStart="10dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/ic_own_goal"
-        tools:visibility="visible" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/card_right"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        android:layout_marginStart="10dp"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

@@ -27,9 +27,17 @@ class LoadMockyUseCase @Inject constructor(
                         tm.teamType,
                         ViewAction(
                             tm.action?.goalType,
-                            ViewPlayer(
+                            player = ViewPlayer(
                                 tm.action?.player?.playerName,
                                 tm.action?.player?.playerImage
+                            ),
+                            player1 = ViewPlayer(
+                                tm.action?.player1?.playerName,
+                                tm.action?.player1?.playerImage
+                            ),
+                            player2 = ViewPlayer(
+                                tm.action?.player2?.playerName,
+                                tm.action?.player2?.playerImage
                             )
                         )
                     )
@@ -44,9 +52,17 @@ class LoadMockyUseCase @Inject constructor(
                         teamAction.teamType,
                         ViewAction(
                             teamAction.action?.goalType,
-                            ViewPlayer(
+                            player = ViewPlayer(
                                 teamAction.action?.player?.playerName,
                                 teamAction.action?.player?.playerImage
+                            ),
+                            player1 = ViewPlayer(
+                                teamAction.action?.player1?.playerName,
+                                teamAction.action?.player1?.playerImage
+                            ),
+                            player2 = ViewPlayer(
+                                teamAction.action?.player2?.playerName,
+                                teamAction.action?.player2?.playerImage
                             )
                         )
                     )

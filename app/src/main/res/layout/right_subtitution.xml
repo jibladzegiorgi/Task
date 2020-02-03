@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="18dp"
-        app:layout_constraintBottom_toBottomOf="@+id/substitution_out_player_name"
+        app:layout_constraintBottom_toBottomOf="@+id/substitution_right_out_player_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/substitution_right_time">
 
@@ -19,6 +19,7 @@
             android:id="@+id/right_in_player_icon"
             android:layout_width="25dp"
             android:layout_height="25dp"
+            android:elevation="1dp"
             app:srcCompat="@mipmap/ic_launcher" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -30,16 +31,20 @@
     </FrameLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/substitution_out_player_name"
+        android:id="@+id/substitution_right_out_player_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="10dp"
         android:ellipsize="end"
         android:fontFamily="sans-serif-medium"
+        android:gravity="end"
         android:lines="1"
-        android:textColor="@color/_000"
+        android:textColor="@color/_B0B0B0"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/container"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/substitution_right_in_player_name"
         tools:text="Ronaldo" />
 
@@ -47,6 +52,7 @@
         android:id="@+id/substitution_right_time"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
         android:ellipsize="end"
         android:fontFamily="sans-serif"
         android:lines="1"
@@ -62,13 +68,17 @@
         android:id="@+id/substitution_right_in_player_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="10dp"
         android:ellipsize="end"
         android:fontFamily="sans-serif-medium"
+        android:gravity="end"
         android:lines="1"
         android:textColor="@color/_000"
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/substitution_out_player_name"
         app:layout_constraintEnd_toStartOf="@+id/container"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/substitution_right_time"
         tools:text="Messi L." />
 
@@ -76,7 +86,8 @@
         android:id="@+id/appCompatImageView3"
         android:layout_width="7dp"
         android:layout_height="7dp"
-        app:layout_constraintBottom_toTopOf="@+id/substitution_out_player_name"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/substitution_right_in_player_name"
         app:layout_constraintEnd_toStartOf="@+id/substitution_right_in_player_name"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,11 +97,13 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="7dp"
         android:layout_height="7dp"
-        app:layout_constraintBottom_toBottomOf="@+id/substitution_out_player_name"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/substitution_right_out_player_name"
         app:layout_constraintEnd_toStartOf="@+id/substitution_out_player_name"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/substitution_out_player_name"
+        app:layout_constraintTop_toTopOf="@+id/substitution_right_out_player_name"
+        app:layout_constraintVertical_bias="0.5"
         app:srcCompat="@drawable/ic_substitution_out" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
