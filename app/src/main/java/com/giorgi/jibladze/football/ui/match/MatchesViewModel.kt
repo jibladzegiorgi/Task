@@ -5,7 +5,7 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
 import com.giorgi.jibladze.football.Consts.WIFI_CONNECTION
 import com.giorgi.jibladze.football.model.ViewMocky
-import com.giorgi.jibladze.football.network.data.LoadMockyUseCase
+import com.giorgi.jibladze.football.network.data.usacase.LoadMockyUseCase
 import com.giorgi.jibladze.football.network.data.Result
 import javax.inject.Inject
 import javax.inject.Named

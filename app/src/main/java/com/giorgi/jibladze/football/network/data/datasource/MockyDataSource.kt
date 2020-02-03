@@ -1,10 +1,11 @@
-package com.giorgi.jibladze.football.network.data
+package com.giorgi.jibladze.football.network.data.datasource
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.giorgi.jibladze.football.model.MockyResult
 import com.giorgi.jibladze.football.network.FootballService
 import com.giorgi.jibladze.football.network.ImpRetrofitCallback
+import com.giorgi.jibladze.football.network.data.Result
 import javax.inject.Inject
 
 interface RemoteMockyDataSource {

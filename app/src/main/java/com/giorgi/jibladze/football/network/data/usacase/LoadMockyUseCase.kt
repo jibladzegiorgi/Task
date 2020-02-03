@@ -1,7 +1,9 @@
-package com.giorgi.jibladze.football.network.data
+package com.giorgi.jibladze.football.network.data.usacase
 
 import com.giorgi.jibladze.football.model.*
 import com.giorgi.jibladze.football.network.MediatorUseCase
+import com.giorgi.jibladze.football.network.data.repo.MockyRepository
+import com.giorgi.jibladze.football.network.data.Result
 import javax.inject.Inject
 
 class LoadMockyUseCase @Inject constructor(
@@ -11,7 +13,11 @@ class LoadMockyUseCase @Inject constructor(
     override fun execute(parameters: Unit) {
         result.addSource(mockyRepository.getMocky()) {
             (it as? Result.Success)?.data?.let { data ->
-                result.postValue(Result.Success(convertDataToMainUIModel(data)))
+                result.postValue(
+                    Result.Success(
+                        convertDataToMainUIModel(data)
+                    )
+                )
             }
         }
     }

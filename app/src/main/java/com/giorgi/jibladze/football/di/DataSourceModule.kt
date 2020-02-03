@@ -1,12 +1,10 @@
 package com.giorgi.jibladze.football.di
 
-import android.content.Context
 import com.giorgi.jibladze.football.network.FootballService
-import com.giorgi.jibladze.football.network.data.MockyDataSource
-import com.giorgi.jibladze.football.network.data.RemoteMockyDataSource
+import com.giorgi.jibladze.football.network.data.datasource.MockyDataSource
+import com.giorgi.jibladze.football.network.data.datasource.RemoteMockyDataSource
 import dagger.Module
 import dagger.Provides
-import javax.inject.Named
 import javax.inject.Singleton
 
 @Module

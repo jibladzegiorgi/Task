@@ -1,7 +1,9 @@
-package com.giorgi.jibladze.football.network.data
+package com.giorgi.jibladze.football.network.data.repo
 
 import androidx.lifecycle.LiveData
 import com.giorgi.jibladze.football.model.MockyResult
+import com.giorgi.jibladze.football.network.data.datasource.RemoteMockyDataSource
+import com.giorgi.jibladze.football.network.data.Result
 import javax.inject.Inject
 
 interface MockyRepositorySource {

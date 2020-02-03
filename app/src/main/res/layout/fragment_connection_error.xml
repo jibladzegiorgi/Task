@@ -12,7 +12,7 @@
         android:id="@+id/appCompatTextView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="connection error!"
+        android:text="@string/connection_error"
         android:textSize="18sp"
         android:textColor="@color/_000"
         android:fontFamily="sans-serif-medium"

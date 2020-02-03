@@ -3,4 +3,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ball_possession">Ball Possession</string>
+    <string name="connection_error">connection error!</string>
+    <string name="overview">Overview</string>
+    <string name="statistic">Statistic</string>
+    <string name="line_up">Line up</string>
+    <string name="toolbar_sub_title">Gameweek 3</string>
+    <string name="toolbar_title">Match Preview</string>
 </resources>
