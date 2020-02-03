@@ -149,7 +149,7 @@ class InnerOverViewRightAdapter(
 
             itemView.right_substitution_layout.visibility = View.VISIBLE
             itemView.substitution_right_time.visibility = View.VISIBLE
-            itemView.substitution_right_time.text = "$actionTime Substitution"
+            itemView.substitution_right_time.text = "$actionTime' Substitution"
             item.let { team1Substitution ->
                 team1Substitution.action?.player1?.let {
                     loadImage(

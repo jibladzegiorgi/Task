@@ -11,8 +11,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.squareup.picasso.Picasso
 
-fun BottomNavigationView.createBadge(menuItemId: Int) {
-    this.getOrCreateBadge(menuItemId).number = 50
+fun BottomNavigationView.createBadge(menuItemId: Int,
+                                     badgeCount:Int ) {
+    this.getOrCreateBadge(menuItemId).number = badgeCount
 }
 
 inline fun <reified VM : ViewModel> Fragment.viewModelProvider(

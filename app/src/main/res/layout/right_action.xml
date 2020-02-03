@@ -29,6 +29,7 @@
         android:fontFamily="sans-serif"
         android:lines="1"
         android:textColor="@color/_B0B0B0"
+        android:gravity="end"
         android:textSize="10sp"
         app:layout_constraintBottom_toTopOf="@+id/right_goal_name"
         app:layout_constraintEnd_toStartOf="@+id/right_player_icon"

@@ -9,7 +9,9 @@ import com.giorgi.jibladze.football.network.data.LoadMockyUseCase
 import com.giorgi.jibladze.football.network.data.Result
 import javax.inject.Inject
 import javax.inject.Named
+import javax.inject.Singleton
 
+@Singleton
 class MatchesViewModel @Inject constructor(
     private val loadMockyUseCase: LoadMockyUseCase,
     @Named(WIFI_CONNECTION) isConnected: Boolean

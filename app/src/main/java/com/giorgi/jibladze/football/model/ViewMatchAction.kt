@@ -21,13 +21,14 @@ data class ViewTeam(
     val teamImage: String? = null,
     val score: Int? = null,
     val ballPosition: String? = null
-)
+): Serializable
 
 data class ViewMatchSummaries(
     val matchActionList: List<ViewMatchAction>
 ) : Serializable
 
 data class ViewMatchAction(
+    var isHeader: Boolean =false,
     val actionTime: String? = null,
     val team1Action:  List<ViewTeam1Action>? = null,
     val team2Action:  List<ViewTeam1Action>? = null

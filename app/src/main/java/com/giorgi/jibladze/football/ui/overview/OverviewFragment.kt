@@ -7,13 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.giorgi.jibladze.football.OverviewAdapter
+import com.giorgi.jibladze.football.ui.adapter.OverviewAdapter
 
 import com.giorgi.jibladze.football.R
 import com.giorgi.jibladze.football.databinding.FragmentOverviewBinding
 import com.giorgi.jibladze.football.model.ViewMatch
-import com.giorgi.jibladze.football.model.ViewMatchSummaries
 import kotlinx.android.synthetic.main.fragment_overview.*
 
 class OverviewFragment : Fragment() {
@@ -50,19 +48,30 @@ class OverviewFragment : Fragment() {
 
     private fun initRecyclerView() {
         match_action_recycler.layoutManager = LinearLayoutManager(context)
-        match_action_recycler.adapter = OverviewAdapter()
+        match_action_recycler.adapter = OverviewAdapter(
+            arguments?.getString(HALF_1),
+            arguments?.getString(HALF_2)
+        )
     }
 
 
     companion object {
 
         const val PARAMETER = "parameter"
+        const val HALF_1 = "half_1"
+        const val HALF_2 = "HALF_2"
 
         @JvmStatic
-        fun newInstance(matchSummary: ViewMatch) =
+        fun newInstance(
+            matchSummary: ViewMatch,
+            s1: String,
+            s2: String
+        ) =
             OverviewFragment().also {
                 it.arguments = Bundle().also { b ->
                     b.putSerializable(PARAMETER, matchSummary)
+                    b.putString(HALF_1, s1)
+                    b.putString(HALF_2, s2)
                 }
             }
     }

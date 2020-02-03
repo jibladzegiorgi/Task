@@ -4,14 +4,11 @@ import android.annotation.SuppressLint
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.giorgi.jibladze.football.OverviewAdapter
+import com.giorgi.jibladze.football.ui.adapter.OverviewAdapter
 import com.giorgi.jibladze.football.Utils
-import com.giorgi.jibladze.football.model.ViewMatch
 import com.giorgi.jibladze.football.model.ViewMatchAction
-import com.giorgi.jibladze.football.model.ViewMatchSummaries
 import com.squareup.picasso.Picasso
 
 @BindingAdapter("imageUrl")
@@ -52,10 +49,23 @@ fun setData(
     recyclerView: RecyclerView,
     list: List<ViewMatchAction>?
 ) {
-    recyclerView.adapter?.let {
-        if (recyclerView.adapter is OverviewAdapter){
-            (it as OverviewAdapter).run {
-                this.submitList(list)
+    val listForAdapter=list?.toMutableList()
+    listForAdapter?.add(0,ViewMatchAction(isHeader = true))
+    recyclerView.adapter?.let {adapter->
+        if (adapter is OverviewAdapter){
+            adapter.run {
+                run loop@{
+                    list?.forEachIndexed { index, viewMatchAction ->
+                        viewMatchAction.actionTime?.toInt()?.let {
+                            if (it > 45) {
+                                listForAdapter?.add(index,ViewMatchAction(isHeader = true))
+                                return@loop
+                            }
+                        }
+
+                    }
+                }
+                this.submitList(listForAdapter)
             }
         }
     }
