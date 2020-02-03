@@ -55,10 +55,11 @@ fun setData(
         if (adapter is OverviewAdapter){
             adapter.run {
                 run loop@{
-                    list?.forEachIndexed { index, viewMatchAction ->
+                    listForAdapter?.forEachIndexed { index, viewMatchAction ->
                         viewMatchAction.actionTime?.toInt()?.let {
+                            //მთლად სწორი არაა მგონი ეს
                             if (it > 45) {
-                                listForAdapter?.add(index,ViewMatchAction(isHeader = true))
+                                listForAdapter.add(index,ViewMatchAction(isHeader = true))
                                 return@loop
                             }
                         }
