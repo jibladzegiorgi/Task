@@ -1,6 +1,12 @@
 package com.giorgi.jibladze.football.di
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import com.giorgi.jibladze.football.BuildConfig
+import com.giorgi.jibladze.football.Consts.WIFI_CONNECTION
+import com.giorgi.jibladze.football.MyApp
 import com.giorgi.jibladze.football.network.FootballService
 import dagger.Module
 import dagger.Provides
@@ -11,6 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.security.cert.CertificateException
 import java.security.cert.X509Certificate
 import java.util.concurrent.TimeUnit
+import javax.inject.Named
 import javax.inject.Singleton
 import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManager
@@ -18,6 +25,12 @@ import javax.net.ssl.X509TrustManager
 
 @Module
 class AppModule {
+
+    @Singleton
+    @Provides
+    fun provideContext(application: MyApp): Context {
+        return application.applicationContext
+    }
 
     @Singleton
     @Provides
@@ -41,6 +54,32 @@ class AppModule {
 
     @Provides
     fun provideBaseUrlForOauth() = FootballService.BASE_URL
+
+    @Provides
+    @Named(WIFI_CONNECTION)
+    fun providesWifiManager(context: Context): Boolean =
+        (context.applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager)
+            .let { cm ->
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    val actNw = cm.getNetworkCapabilities(cm.activeNetwork) ?: return false
+                    when {
+                        actNw.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+                        actNw.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+                        actNw.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+                        else -> false
+                    }
+                } else {
+                    cm.activeNetworkInfo?.let {
+                        when (it.type) {
+                            ConnectivityManager.TYPE_WIFI -> true
+                            ConnectivityManager.TYPE_MOBILE -> true
+                            ConnectivityManager.TYPE_ETHERNET -> true
+                            else -> false
+                        }
+                    } ?: false
+                }
+
+            }
 
     @Singleton
     @Provides

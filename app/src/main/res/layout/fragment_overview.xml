@@ -90,7 +90,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/progressBar"
             app:matchActionItems="@{viewMatch.matchActionList}"
-            tools:listitem="@layout/match_action_item_view" />
+            tools:listitem="@layout/match_action_inner_left_item_view" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
